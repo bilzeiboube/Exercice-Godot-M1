@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SaveResource" load_steps=2 format=3 uid="uid://cbwqbelpnpti6"]
+
+[ext_resource type="Script" path="res://saveresource.gd" id="1_51la6"]
+
+[resource]
+script = ExtResource("1_51la6")
+pos_x = 750
+pos_y = 50

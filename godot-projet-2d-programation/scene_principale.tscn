@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://bih8wn2juetr8"]
+[gd_scene load_steps=15 format=4 uid="uid://bih8wn2juetr8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ba8oj"]
 [ext_resource type="Texture2D" uid="uid://dgg4mosi5ns0d" path="res://assets/Grass.png" id="1_k7cmw"]
 [ext_resource type="Script" path="res://scripts/sol.gd" id="1_n8spr"]
 [ext_resource type="Texture2D" uid="uid://bpedutumwdylq" path="res://icon.svg" id="2_dj7kq"]
+[ext_resource type="Resource" uid="uid://cbwqbelpnpti6" path="res://new_resource.tres" id="4_0wget"]
 [ext_resource type="PackedScene" uid="uid://dwfhjmyj5yip8" path="res://Ressources/objet.tscn" id="7_yb6yv"]
 [ext_resource type="PackedScene" uid="uid://dfyke7ogkd0b2" path="res://Ressources/mur.tscn" id="9_i8xiw"]
 [ext_resource type="PackedScene" uid="uid://bj4j26dsbef4q" path="res://Ressources/perso.tscn" id="9_nfyjb"]
@@ -95,6 +96,13 @@ size = Vector2(127, 128.5)
 
 [node name="ScenePrincipale" type="Node2D"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "LOAD POS"
+
 [node name="Sol" type="Sprite2D" parent="."]
 modulate = Color(0.249782, 0.600247, 0.420653, 1)
 z_index = -3
@@ -123,6 +131,7 @@ position = Vector2(723, 50)
 collision_layer = 7
 motion_mode = 1
 script = ExtResource("1_ba8oj")
+position_load = ExtResource("4_0wget")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("2_dj7kq")
@@ -142,6 +151,9 @@ offset_right = 26.0
 offset_bottom = -71.0
 theme_override_constants/outline_size = 30
 text = "Pouet"
+
+[node name="TimerSavePos" type="Timer" parent="Player"]
+wait_time = 5.0
 
 [node name="Objet" parent="." instance=ExtResource("7_yb6yv")]
 position = Vector2(838, -108)
@@ -189,3 +201,6 @@ scale = Vector2(1.29228, -11.9297)
 position = Vector2(511, 422)
 rotation = -7.82783
 scale = Vector2(1.29228, -11.9297)
+
+[connection signal="pressed" from="CanvasLayer/Button" to="Player" method="_on_button_pressed"]
+[connection signal="timeout" from="Player/TimerSavePos" to="Player" method="_on_timer_save_pos_timeout"]
