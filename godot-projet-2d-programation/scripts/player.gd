@@ -27,6 +27,7 @@ func _ready() -> void:
 	SignalBus.bodyEnter.connect(_on_area_2d_body_entered)
 	SignalBus.bodyExit.connect(_on_area_2d_body_exited)
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	var vitesse=SPEED
 	var directionX := Input.get_axis("ui_left", "ui_right")
@@ -60,7 +61,9 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 
 func _on_timer_save_pos_timeout() -> void:
+	@warning_ignore("narrowing_conversion")
 	position_load.pos_x = position.x
+	@warning_ignore("narrowing_conversion")
 	position_load.pos_y = position.y
 	position_load.save()
 
